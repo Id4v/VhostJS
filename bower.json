@@ -1,0 +1,26 @@
+{
+  "name": "vhost-node",
+  "description": "",
+  "main": "bin/server.js",
+  "authors": [
+    "David Rimbault <rimbault.david@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "es6"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "Materialize": "materialize#^0.97.6"
+  }
+}
