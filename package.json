@@ -4,7 +4,7 @@
   "description": "",
   "main": "bin/server.js",
   "scripts": {
-    "server": "sudo npm run build && nodemon --delay 1 bin/server.js",
+    "server": "npm run build && sudo nodemon --delay 1 bin/server.js",
     "build": "babel src -d bin/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

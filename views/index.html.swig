@@ -1,7 +1,6 @@
 {% extends "layout.html.swig" %}
 
-{% block content %}
-
+{% block page_title %}
     <div id="delete-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Suppression</h4>
@@ -31,20 +30,11 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block content %}
     <div class="row" id="list-content">
-        <div class="preloader-wrapper big active" id="loader">
-            <div class="spinner-layer spinner-blue-only">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
-        </div>
         <div class="col s12" id="table-vhosts">
             <table class="bordered z-depth-2 highlight">
                 <thead>
@@ -54,10 +44,18 @@
                     <th>Chemin</th>
                     <th>Actions</th>
                 </tr>
+                {% include "blocks/_filters.html.swig" %}
+                <tr id="loader">
+                    <th colspan="4">
+                        <div class="progress">
+                            <div class="indeterminate"></div>
+                        </div>
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
                 {% for vhost in vhosts %}
-                    {% include "blocks/_inner_row.html.swig" with vhost only %}
+                    {% include "blocks/_inner_row.html.swig" %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -84,13 +82,13 @@
         }
 
         function animateTable() {
-            $("#table-vhosts").fadeIn(2000,function(){
+            $("#table-vhosts tbody").fadeIn(2000,function(){
                 $("#table-vhosts").toggleClass("visible");
             });
         }
 
         function finishedData(data, stat, xhr) {
-            $("#table-vhosts").html(data);
+            $("#table-vhosts tbody").html(data);
             $("#loader").fadeOut(400, function () {
                 animateTable()
                 bindDeleteModal();
@@ -99,7 +97,7 @@
 
         $("#ignoredCheckbox").change(function () {
             var checkbox = this;
-            $("#table-vhosts").fadeOut(400, function () {
+            $("#table-vhosts tbody").fadeOut(400, function () {
                 $("#loader").fadeIn(400,function(){
                     if ($(checkbox).is(":checked")) {
                         $.ajax("/?ignored=true", {

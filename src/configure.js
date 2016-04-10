@@ -55,14 +55,16 @@ module.exports = function(app){
         saveUninitialized: true,
         resave: true
     }))
-    app.use('/public/', express['static'](path.join(__dirname, '/../public')))
 
     app.use((req,res,next) => {
         res.locals.flash = req.session.flash;
-        req.session.flash = undefined
+        req.session.flash = undefined;
         res.locals.ignored = req.session.ignored;
         next()
     })
+
+
+    app.use('/public/', express['static'](path.join(__dirname, '/../public')))
 
     routes.initialize(app, new express.Router())
 

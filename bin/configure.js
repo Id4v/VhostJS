@@ -88,7 +88,6 @@ module.exports = function (app) {
         saveUninitialized: true,
         resave: true
     }));
-    app.use('/public/', _express2.default['static'](_path2.default.join(__dirname, '/../public')));
 
     app.use(function (req, res, next) {
         res.locals.flash = req.session.flash;
@@ -96,6 +95,8 @@ module.exports = function (app) {
         res.locals.ignored = req.session.ignored;
         next();
     });
+
+    app.use('/public/', _express2.default['static'](_path2.default.join(__dirname, '/../public')));
 
     _loader2.default.initialize(app, new _express2.default.Router());
 

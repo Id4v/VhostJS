@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 <body>
 <div class="row">
@@ -18,6 +20,7 @@
     <div class="nav-wrapper">
         <ul class="left hide-on-med-and-down">
             <li><a href="/sync" id="refresh-link"><i class="material-icons">refresh</i></a></li>
+            <li><a href="/create" class="bigger"><i class="fa fa-plus"></i></a></li>
         </ul>
         <a href="/" class="brand-logo center">Vhosts</a>
         <ul class="right hide-on-med-and-down">
@@ -43,13 +46,15 @@
         {% endif %}
     {% endblock %}
 
+    {% block page_title %}
+
+    {% endblock %}
+
 
     {% block content %}
-{% endblock %}
+    {% endblock %}
 </div>
 {% block javascript %}
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/public/bower/Materialize/dist/js/materialize.min.js"></script>
 
     <script type="text/javascript">
@@ -66,12 +71,10 @@
     </script>
 
     <script type="text/javascript">
-    {% if flash %}
         $(".flash").slideDown();
         setTimeout(function(){
             $(".flash").slideUp();
         },3000);
-    {% endif %}
     </script>
 {% endblock %}
 

@@ -13,11 +13,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
     initialize: function initialize(app, router) {
         router.get("/", _controller2.default.index);
+        router.post("/", _controller2.default.index);
+
         router.get(/^\/unignore\/(\w+)/, _controller2.default.unignore);
         router.get(/^\/ignore\/(\w+)/, _controller2.default.ignore);
-        router.get(/\/delete\/(\w+)/, _controller2.default.delete);
+        router.get(/^\/delete\/(\w+)/, _controller2.default.delete);
         router.get("/sync", _controller2.default.synch);
         router.get("/restart", _controller2.default.restart);
+
+        router.get("/create/", _controller2.default.create);
+        router.post("/create/", _controller2.default.create);
+
+        router.get(/^\/edit\/(\w+)/, _controller2.default.edit);
+        router.post(/^\/edit\/(\w+)/, _controller2.default.edit);
+
         app.use("/", router);
     }
 }; /**

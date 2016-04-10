@@ -20,25 +20,29 @@ var _vhost = require("./entity/manager/vhost");
 
 var _vhost2 = _interopRequireDefault(_vhost);
 
+var _mongoose = require("mongoose");
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var app = (0, _express2.default)(); /**
-                                     * Created by david on 03/04/2016.
-                                     */
+/**
+ * Created by david on 03/04/2016.
+ */
 
+
+var app = (0, _express2.default)();
 
 app = (0, _configure2.default)(app);
 
 var server = app.listen(app.get('port'), function () {
     console.log("WebServer launched on localhost at port " + app.get('port'));
-    _client2.default.connect('mongodb://localhost:27017/vhosts', function () {
+
+    _mongoose2.default.connect('mongodb://localhost:27017/vhosts', function (err) {
+        console.log(err);
         console.log('Connected to Mongo');
         var vhostManager = new _vhost2.default();
         app.set("vhostmanager", vhostManager);
-        vhostManager.sync(function () {
-            var vhosts = _client2.default.db().collection("vhosts").find().toArray(function (err, datas) {
-                console.log("Synched : " + datas.length + " vhosts en base");
-            });
-        });
+        vhostManager.sync(null);
     });
 });
