@@ -8,7 +8,6 @@ NodeJS app to manage my Vhosts and to learn NodeJS a bit
 ## Install
 ```bash
 npm install
-npm run build
 ```
 
 ## Launch
